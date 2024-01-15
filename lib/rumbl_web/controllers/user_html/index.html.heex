@@ -1,0 +1,9 @@
+<.header>Users</.header>
+
+<.table id="users" rows={@users}>
+    <:col :let={user} label="name"><%= first_name(user) %> (<%= user.id %>)</:col>
+    <:col :let={user} label="View"><.link href={~p"/users/#{user.id}"} class={[
+                                        "rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3",
+                                        "text-sm font-semibold leading-6 text-white active:text-white/80"
+                                        ]}>View</.link></:col>
+</.table>
