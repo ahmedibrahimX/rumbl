@@ -41,4 +41,16 @@ defmodule Rumbl.Accounts do
     |> Repo.insert()
   end
 
+  def authenticate_by_username_and_pass(username, give_pass) do
+    user = get_user_by(username: username)
+    cond do
+      user && Pbkdf2.verify_pass(give_pass, user.password_hash) ->
+        {:ok, user}
+      user -> {:error, :unauthorized}
+      true ->
+        Pbkdf2.no_user_verify()
+        {:error, :not_found}
+    end
+  end
+
 end

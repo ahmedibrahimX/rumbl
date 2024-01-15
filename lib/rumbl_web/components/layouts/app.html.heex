@@ -9,18 +9,13 @@
       </p>
     </div>
     <div class="flex items-center gap-4 font-semibold leading-6 text-zinc-900">
-      <a href="https://twitter.com/elixirphoenix" class="hover:text-zinc-700">
-        @elixirphoenix
-      </a>
-      <a href="https://github.com/phoenixframework/phoenix" class="hover:text-zinc-700">
-        GitHub
-      </a>
-      <a
-        href="https://hexdocs.pm/phoenix/overview.html"
-        class="rounded-lg bg-zinc-100 px-2 py-1 hover:bg-zinc-200/80"
-      >
-        Get Started <span aria-hidden="true">&rarr;</span>
-      </a>
+      <%= if @current_user do %>
+        <%= @current_user.username %>
+        <.link href={~p"/sessions/delete"} method="delete" class="rounded-lg bg-zinc-100 bg-gray-300 px-2 py-1 hover:bg-zinc-200/80">Log out</.link>
+      <% else %>
+        <.link href={~p"/sessions/new"} class="rounded-lg bg-zinc-100 bg-gray-300 px-2 py-1 hover:bg-zinc-200/80">Login</.link>
+        <.link href={~p"/users/new"} class="rounded-lg bg-zinc-100 bg-gray-300 px-2 py-1 hover:bg-zinc-200/80">Register</.link>
+      <% end %>
     </div>
   </div>
 </header>
