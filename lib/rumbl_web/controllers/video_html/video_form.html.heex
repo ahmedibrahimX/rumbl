@@ -5,6 +5,16 @@
   <.input field={f[:url]} type="text" label="Url" />
   <.input field={f[:title]} type="text" label="Title" />
   <.input field={f[:description]} type="text" label="Description" />
+  <!-- <%= Phoenix.HTML.Form.select(f, :category_id, Enum.map(@categories, fn c -> {c.name, c.id} end)) %> -->
+  <.input
+    field={f[:category_id]}
+    name="video[category_id]"
+    type="select"
+    label="Categories"
+    prompt="Enter a category"
+    options={category_select_options(@categories)}
+    value={category_select_values(@categories)}
+    />
   <:actions>
     <.button>Save Video</.button>
   </:actions>

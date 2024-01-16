@@ -10,4 +10,11 @@ defmodule RumblWeb.VideoHTML do
   attr :action, :string, required: true
 
   def video_form(assigns)
+
+  def category_select_options(categories) do
+    Enum.map(categories, fn c -> {c.name, c.id} end)
+  end
+  def category_select_values(categories) do
+    Enum.map(categories, fn c -> c.id end)
+  end
 end
